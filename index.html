@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arrangements — Piano & Voice Custom Scores</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;500&display=swap');
+
+  :root {
+    --paper: #F7F3E9;
+    --paper-warm: #F1EADA;
+    --ink: #1C1A17;
+    --ink-soft: #4A453D;
+    --brass: #B8924A;
+    --brass-deep: #8C6B33;
+    --sage: #8A9B7E;
+    --rust: #A8542E;
+    --line: rgba(28,26,23,0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 99px, rgba(28,26,23,0.025) 100px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; letter-spacing: -0.01em; }
+
+  .staff {
+    width: 100%;
+    height: 28px;
+    margin: 8px 0;
+    opacity: 0.55;
+  }
+  .staff svg { width: 100%; height: 100%; display: block; }
+  .staff line { stroke: var(--ink-soft); stroke-width: 1; }
+
+  /* ---------- HEADER ---------- */
+  header {
+    padding: 64px 0 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before { content: '♪'; font-size: 14px; }
+
+  h1 {
+    font-size: clamp(38px, 6vw, 58px);
+    line-height: 1.05;
+    max-width: 11ch;
+  }
+  h1 em { font-style: italic; color: var(--brass-deep); }
+
+  .sub {
+    margin-top: 22px;
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 46ch;
+  }
+
+  .cta-row {
+    margin-top: 32px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14.5px;
+    padding: 13px 26px;
+    border-radius: 3px;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--brass); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+  }
+  .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--line); }
+
+  /* ---------- SECTION LABEL ---------- */
+  .section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  .section:last-of-type { border-bottom: none; }
+
+  .label {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .label .opus { color: var(--brass-deep); }
+  .label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ---------- CATALOG (works) ---------- */
+  .catalog-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 16px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .catalog-item:first-child { padding-top: 0; }
+  .catalog-item:last-child { border-bottom: none; }
+
+  .work-title {
+    font-family: 'Fraunces', serif;
+    font-size: 23px;
+    font-weight: 600;
+  }
+  .work-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+  .work-meta span:not(:last-child)::after { content: ' · '; color: var(--brass); }
+
+  .play-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 12.5px;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 9px 16px;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+  .play-link:hover { background: var(--ink); color: var(--paper); }
+
+  .placeholder-note {
+    font-size: 13px;
+    color: var(--rust);
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+  }
+  .about-text p { margin-bottom: 16px; color: var(--ink-soft); font-size: 16px; }
+  .about-text strong { color: var(--ink); font-weight: 600; }
+
+  .fact-list {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+  }
+  .fact-list dt { color: var(--brass-deep); margin-top: 16px; text-transform: uppercase; letter-spacing: 0.06em; font-size: 11px; }
+  .fact-list dt:first-child { margin-top: 0; }
+  .fact-list dd { color: var(--ink); margin-top: 4px; line-height: 1.5; }
+
+  /* ---------- SERVICES ---------- */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .service {
+    background: var(--paper);
+    padding: 26px;
+  }
+  .service .num {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--brass-deep);
+  }
+  .service h3 {
+    font-size: 18px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  .service p { font-size: 14px; color: var(--ink-soft); }
+
+  /* ---------- CONTACT ---------- */
+  .contact-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px;
+    border-radius: 4px;
+    text-align: left;
+  }
+  .contact-box h2 { color: var(--paper); font-size: 30px; margin-bottom: 14px; }
+  .contact-box p { color: rgba(247,243,233,0.72); max-width: 42ch; margin-bottom: 26px; }
+  .contact-box .btn-primary { background: var(--brass); color: var(--ink); }
+  .contact-box .btn-primary:hover { box-shadow: 0 6px 0 var(--paper); }
+
+  footer {
+    padding: 36px 0 56px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; gap: 28px; }
+    .services { grid-template-columns: 1fr; }
+    .catalog-item { grid-template-columns: 1fr; gap: 12px; }
+    .play-link { justify-self: start; }
+    .contact-box { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Piano Arranger · Transcriptions on Request</div>
+    <h1>Sheet music that sounds like <em>your</em> song, not a generic cover.</h1>
+    <p class="sub">Classically trained pianist with sharp ears — I transcribe and arrange piano, voice, and small-ensemble scores for singers, students, and bands who need a part written exactly to fit them.</p>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-primary">Commission an arrangement</a>
+      <a href="#catalog" class="btn btn-secondary">Hear the work</a>
+    </div>
+  </header>
+
+  <div class="staff">
+    <svg viewBox="0 0 880 28" preserveAspectRatio="none">
+      <line x1="0" y1="4" x2="880" y2="4"/>
+      <line x1="0" y1="10" x2="880" y2="10"/>
+      <line x1="0" y1="16" x2="880" y2="16"/>
+      <line x1="0" y1="22" x2="880" y2="22"/>
+    </svg>
+  </div>
+
+  <section class="section" id="catalog">
+    <div class="label"><span class="opus">Catalog</span> Selected Arrangements</div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">From the Start</div>
+        <div class="work-meta"><span>Laufey</span><span>Piano Solo</span><span>Intermediate</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/from-the-start-solo-piano" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">Valentine</div>
+        <div class="work-meta"><span>Laufey</span><span>Piano & Voice</span><span>Intermediate</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/valentine-piano-and-voice" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">The Way You Look Tonight</div>
+        <div class="work-meta"><span>Sinatra</span><span>Piano & Voice</span><span>Jazz Standard</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/the-way-you-look-tonight" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">You've Got a Friend in Me</div>
+        <div class="work-meta"><span>Toy Story</span><span>Piano Solo</span><span>Disney / Cinematic</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/youve-got-a-friend-in-me-piano" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+  </section>
+
+  <section class="section" id="about">
+    <div class="label"><span class="opus">Bio</span> The Arranger</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p><strong>I trained classically on piano</strong>, which means the arrangements you get are built on real harmonic understanding, not guesswork — proper voice leading, idiomatic fingerings, and voicings that actually sit well under the hand.</p>
+        <p>What I do differently: <strong>I transcribe by ear.</strong> Send me a recording with no sheet music available anywhere, and I'll still get you an accurate, playable score. That's rarer than it sounds.</p>
+        <p>I work across <strong>pop, jazz standards, indie, Disney, cinematic, Christmas, and church/worship</strong> repertoire — if you can hum it or send a link, I can probably arrange it.</p>
+      </div>
+      <dl class="fact-list">
+        <dt>Background</dt>
+        <dd>Classically trained pianist, 1st-year university</dd>
+        <dt>Specialty</dt>
+        <dd>Ear transcription, piano/voice & solo piano arranging</dd>
+        <dt>Turnaround</dt>
+        <dd>Typically 2–5 days depending on length</dd>
+        <dt>Formats delivered</dt>
+        <dd>PDF score, MusicXML on request, audio reference render</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="label"><span class="opus">Menu</span> What I Can Arrange</div>
+    <div class="services">
+      <div class="service">
+        <div class="num">01</div>
+        <h3>Solo Piano Arrangement</h3>
+        <p>A full song reimagined for one pianist — for performance, practice, or gifting.</p>
+      </div>
+      <div class="service">
+        <div class="num">02</div>
+        <h3>Piano & Voice / Lead Sheet</h3>
+        <p>Singer-friendly accompaniment with a clear vocal line, transposed to your range.</p>
+      </div>
+      <div class="service">
+        <div class="num">03</div>
+        <h3>Ear Transcription</h3>
+        <p>No sheet music exists for your song? Send the recording — I'll write it from scratch.</p>
+      </div>
+      <div class="service">
+        <div class="num">04</div>
+        <h3>Custom Ensemble Voicing</h3>
+        <p>Re-voiced for your specific singers or small group — built around the players you actually have.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="contact-box">
+      <h2>Have a song in mind?</h2>
+      <p>Tell me the song, the instrumentation, and your deadline. I'll quote you a price and turnaround within a day.</p>
+      <a href="mailto:notalix4422@yahoo.com" class="btn btn-primary">notalix4422@yahoo.com</a>
+    </div>
+  </section>
+
+  <footer>Scores delivered as PDF · MusicXML available on request</footer>
+
+</div>
+
+</body>
+</html>
