@@ -274,8 +274,14 @@
   /* ---------- ABOUT ---------- */
   .about-grid {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 48px;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .about-photo img {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid var(--line);
   }
   .about-text p { margin-bottom: 16px; color: var(--ink-soft); font-size: 16px; }
   .about-text strong { color: var(--ink); font-weight: 600; }
@@ -312,7 +318,6 @@
 
   @media (max-width: 640px) {
     .about-grid { grid-template-columns: 1fr; gap: 28px; }
-    .catalog-item { grid-template-columns: 1fr; gap: 12px; }
     .play-link { justify-self: start; }
     .contact-box { padding: 32px 24px; }
     .video-grid { grid-template-columns: 1fr; }
@@ -346,21 +351,26 @@
   <section class="section" id="about">
     <div class="label"><span class="opus">Bio</span> About Ali</div>
     <div class="about-grid">
-      <div class="about-text">
-        <p><strong>I'm a concert pianist at the Cairo Opera House</strong>, based in Cairo, with a classical training that runs deep. Music has been my life since childhood, and live performance is where I feel most at home.</p>
-        <p>Today, I bring that same training to <strong>weddings, hotels, lounges, and private events</strong> — playing live piano that fits the room, from elegant jazz standards to romantic classics to the couple's favorite song.</p>
-        <p>I'm fully flexible with repertoire, and if there's a specific song you have in mind that I don't already play, <strong>I'll arrange and learn it for your event at no extra cost.</strong> I also create custom written arrangements and sheet music for singers, students, and other musicians.</p>
+      <div class="about-photo">
+        <img src="https://drive.google.com/uc?export=view&id=1COUtQQrGxDVNhNK4VFByew-6sHoP2t5x" alt="Ali Abdelrazik — Concert Pianist" style="width:100%;border-radius:4px;border:1px solid var(--line);">
       </div>
-      <dl class="fact-list">
-        <dt>Based in</dt>
-        <dd>Cairo, Egypt</dd>
-        <dt>Background</dt>
-        <dd>Concert pianist, Cairo Opera House</dd>
-        <dt>Live performance for</dt>
-        <dd>Weddings, hotels & lounges, private events</dd>
-        <dt>Also offering</dt>
-        <dd>Custom arrangements & transcription on request</dd>
-      </dl>
+      <div>
+        <div class="about-text">
+          <p><strong>I'm a concert pianist at the Cairo Opera House</strong>, based in Cairo, with a classical training that runs deep. Music has been my life since childhood, and live performance is where I feel most at home.</p>
+          <p>Today, I bring that same training to <strong>weddings, hotels, lounges, and private events</strong> — playing live piano that fits the room, from elegant jazz standards to romantic classics to the couple's favorite song.</p>
+          <p>I'm fully flexible with repertoire, and if there's a specific song you have in mind that I don't already play, <strong>I'll arrange and learn it for your event at no extra cost.</strong> I also create custom written arrangements and sheet music for singers, students, and other musicians.</p>
+        </div>
+        <dl class="fact-list" style="margin-top:24px;">
+          <dt>Based in</dt>
+          <dd>Cairo, Egypt</dd>
+          <dt>Background</dt>
+          <dd>Concert pianist, Cairo Opera House</dd>
+          <dt>Live performance for</dt>
+          <dd>Weddings, hotels & lounges, private events</dd>
+          <dt>Also offering</dt>
+          <dd>Custom arrangements & transcription on request</dd>
+        </dl>
+      </div>
     </div>
   </section>
 
