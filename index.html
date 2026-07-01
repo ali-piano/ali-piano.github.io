@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arrangements — Piano & Voice Custom Scores</title>
+<title>Ali Abdelrazik — Pianist for Live Performance & Custom Arrangements</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;500&display=swap');
 
@@ -75,7 +75,7 @@
   h1 {
     font-size: clamp(38px, 6vw, 58px);
     line-height: 1.05;
-    max-width: 11ch;
+    max-width: 13ch;
   }
   h1 em { font-style: italic; color: var(--brass-deep); }
 
@@ -83,7 +83,7 @@
     margin-top: 22px;
     font-size: 18px;
     color: var(--ink-soft);
-    max-width: 46ch;
+    max-width: 50ch;
   }
 
   .cta-row {
@@ -137,13 +137,108 @@
     background: var(--line);
   }
 
-  /* ---------- CATALOG (works) ---------- */
+  .section-intro {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 28px;
+    max-width: 60ch;
+  }
+
+  /* ---------- VIDEO GRID ---------- */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .video-card {
+    background: var(--paper-warm);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--ink);
+  }
+  .video-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+  .video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(247,243,233,0.4);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    text-align: center;
+    padding: 20px;
+  }
+  .video-caption {
+    padding: 16px 18px;
+  }
+  .video-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .video-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  /* ---------- REPERTOIRE ---------- */
+  .repertoire-group {
+    margin-bottom: 32px;
+  }
+  .repertoire-group:last-child { margin-bottom: 0; }
+  .repertoire-heading {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .repertoire-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 28px;
+  }
+  .repertoire-item {
+    font-size: 14.5px;
+    padding: 6px 0;
+    border-bottom: 1px dotted var(--line);
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .repertoire-item .song {
+    color: var(--ink);
+  }
+  .repertoire-item .artist {
+    color: var(--ink-soft);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* ---------- CATALOG (arrangements) ---------- */
   .catalog-item {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: start;
     gap: 16px;
-    padding: 26px 0;
+    padding: 22px 0;
     border-bottom: 1px solid var(--line);
   }
   .catalog-item:first-child { padding-top: 0; }
@@ -151,12 +246,12 @@
 
   .work-title {
     font-family: 'Fraunces', serif;
-    font-size: 23px;
+    font-size: 21px;
     font-weight: 600;
   }
   .work-meta {
     font-family: 'Space Mono', monospace;
-    font-size: 12.5px;
+    font-size: 12px;
     color: var(--ink-soft);
     margin-top: 6px;
     letter-spacing: 0.02em;
@@ -176,13 +271,6 @@
   }
   .play-link:hover { background: var(--ink); color: var(--paper); }
 
-  .placeholder-note {
-    font-size: 13px;
-    color: var(--rust);
-    font-style: italic;
-    margin-top: 6px;
-  }
-
   /* ---------- ABOUT ---------- */
   .about-grid {
     display: grid;
@@ -200,30 +288,6 @@
   .fact-list dt:first-child { margin-top: 0; }
   .fact-list dd { color: var(--ink); margin-top: 4px; line-height: 1.5; }
 
-  /* ---------- SERVICES ---------- */
-  .services {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-  }
-  .service {
-    background: var(--paper);
-    padding: 26px;
-  }
-  .service .num {
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    color: var(--brass-deep);
-  }
-  .service h3 {
-    font-size: 18px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
-  .service p { font-size: 14px; color: var(--ink-soft); }
-
   /* ---------- CONTACT ---------- */
   .contact-box {
     background: var(--ink);
@@ -233,9 +297,10 @@
     text-align: left;
   }
   .contact-box h2 { color: var(--paper); font-size: 30px; margin-bottom: 14px; }
-  .contact-box p { color: rgba(247,243,233,0.72); max-width: 42ch; margin-bottom: 26px; }
+  .contact-box p { color: rgba(247,243,233,0.72); max-width: 46ch; margin-bottom: 26px; }
   .contact-box .btn-primary { background: var(--brass); color: var(--ink); }
   .contact-box .btn-primary:hover { box-shadow: 0 6px 0 var(--paper); }
+  .contact-row { display: flex; gap: 14px; flex-wrap: wrap; }
 
   footer {
     padding: 36px 0 56px;
@@ -247,10 +312,11 @@
 
   @media (max-width: 640px) {
     .about-grid { grid-template-columns: 1fr; gap: 28px; }
-    .services { grid-template-columns: 1fr; }
     .catalog-item { grid-template-columns: 1fr; gap: 12px; }
     .play-link { justify-self: start; }
     .contact-box { padding: 32px 24px; }
+    .video-grid { grid-template-columns: 1fr; }
+    .repertoire-list { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -259,12 +325,12 @@
 <div class="wrap">
 
   <header>
-    <div class="eyebrow">Piano Arranger · Transcriptions on Request</div>
-    <h1>Sheet music that sounds like <em>your</em> song, not a generic cover.</h1>
-    <p class="sub">Classically trained pianist with sharp ears — I transcribe and arrange piano, voice, and small-ensemble scores for singers, students, and bands who need a part written exactly to fit them.</p>
+    <div class="eyebrow">Pianist · Live Performance & Custom Arrangements</div>
+    <h1>Live piano for your <em>wedding, hotel, or event</em> — in Cairo.</h1>
+    <p class="sub">I'm Ali Abdelrazik, a concert pianist at the Cairo Opera House. I play live for weddings, hotels, and private events, and I also create custom piano arrangements and sheet music on request.</p>
     <div class="cta-row">
-      <a href="#contact" class="btn btn-primary">Commission an arrangement</a>
-      <a href="#catalog" class="btn btn-secondary">Hear the work</a>
+      <a href="#contact" class="btn btn-primary">Book me for an event</a>
+      <a href="#watch" class="btn btn-secondary">Watch me play</a>
     </div>
   </header>
 
@@ -277,13 +343,182 @@
     </svg>
   </div>
 
+  <section class="section" id="about">
+    <div class="label"><span class="opus">Bio</span> About Ali</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p><strong>I'm a concert pianist at the Cairo Opera House</strong>, based in Cairo, with a classical training that runs deep. Music has been my life since childhood, and live performance is where I feel most at home.</p>
+        <p>Today, I bring that same training to <strong>weddings, hotels, lounges, and private events</strong> — playing live piano that fits the room, from elegant jazz standards to romantic classics to the couple's favorite song.</p>
+        <p>I'm fully flexible with repertoire, and if there's a specific song you have in mind that I don't already play, <strong>I'll arrange and learn it for your event at no extra cost.</strong> I also create custom written arrangements and sheet music for singers, students, and other musicians.</p>
+      </div>
+      <dl class="fact-list">
+        <dt>Based in</dt>
+        <dd>Cairo, Egypt</dd>
+        <dt>Background</dt>
+        <dd>Concert pianist, Cairo Opera House</dd>
+        <dt>Live performance for</dt>
+        <dd>Weddings, hotels & lounges, private events</dd>
+        <dt>Also offering</dt>
+        <dd>Custom arrangements & transcription on request</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="watch">
+    <div class="label"><span class="opus">Watch</span> Me Play</div>
+    <p class="section-intro">A few performances recorded at home, to give you a feel for how I play and sound. Happy to send more on request.</p>
+    <div class="video-grid">
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/-8u_90-6o78" allowfullscreen></iframe>
+        </div>
+        <div class="video-caption">
+          <div class="video-title">Can't Help Falling in Love</div>
+          <div class="video-meta">Elvis Presley</div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/TM8pKzP91zw" allowfullscreen></iframe>
+        </div>
+        <div class="video-caption">
+          <div class="video-title">Valentine</div>
+          <div class="video-meta">Laufey</div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/rjJEEdRml-4" allowfullscreen></iframe>
+        </div>
+        <div class="video-caption">
+          <div class="video-title">Can't Take My Eyes Off You</div>
+          <div class="video-meta">Frankie Valli</div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/A1vrCu_iN7g" allowfullscreen></iframe>
+        </div>
+        <div class="video-caption">
+          <div class="video-title">Clair de Lune</div>
+          <div class="video-meta">Debussy</div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/QC7RDtoX0l4" allowfullscreen></iframe>
+        </div>
+        <div class="video-caption">
+          <div class="video-title">You've Got a Friend in Me</div>
+          <div class="video-meta">Toy Story</div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-frame">
+          <div class="video-placeholder">Video coming soon —<br>The Way You Look Tonight</div>
+        </div>
+        <div class="video-caption">
+          <div class="video-title">The Way You Look Tonight</div>
+          <div class="video-meta">Frank Sinatra</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="repertoire">
+    <div class="label"><span class="opus">Repertoire</span> What I Can Play</div>
+    <p class="section-intro">A sample of my live repertoire, spanning jazz standards, romantic classics, film themes, and solo classical piano. Don't see your song? Ask — I'm happy to learn or arrange it for your event.</p>
+
+    <div class="repertoire-group">
+      <div class="repertoire-heading">Jazz &amp; Classic Standards</div>
+      <div class="repertoire-list">
+        <div class="repertoire-item"><span class="song">The Way You Look Tonight</span><span class="artist">Sinatra</span></div>
+        <div class="repertoire-item"><span class="song">Fly Me to the Moon</span><span class="artist">Sinatra</span></div>
+        <div class="repertoire-item"><span class="song">Autumn Leaves</span><span class="artist">Standard</span></div>
+        <div class="repertoire-item"><span class="song">Misty</span><span class="artist">Standard</span></div>
+        <div class="repertoire-item"><span class="song">What a Wonderful World</span><span class="artist">Armstrong</span></div>
+        <div class="repertoire-item"><span class="song">L-O-V-E</span><span class="artist">Nat King Cole</span></div>
+        <div class="repertoire-item"><span class="song">Smile</span><span class="artist">Nat King Cole</span></div>
+        <div class="repertoire-item"><span class="song">Can't Take My Eyes Off You</span><span class="artist">Frankie Valli</span></div>
+        <div class="repertoire-item"><span class="song">Strangers in the Night</span><span class="artist">Sinatra</span></div>
+        <div class="repertoire-item"><span class="song">Something Stupid</span><span class="artist">Sinatra</span></div>
+        <div class="repertoire-item"><span class="song">Dream a Little Dream of Me</span><span class="artist">Ella Fitzgerald</span></div>
+        <div class="repertoire-item"><span class="song">Can't Help Falling in Love</span><span class="artist">Elvis</span></div>
+        <div class="repertoire-item"><span class="song">Valentine</span><span class="artist">Laufey</span></div>
+        <div class="repertoire-item"><span class="song">From the Start</span><span class="artist">Laufey</span></div>
+        <div class="repertoire-item"><span class="song">Let You Break My Heart Again</span><span class="artist">Laufey</span></div>
+        <div class="repertoire-item"><span class="song">Everybody Loves Somebody</span><span class="artist">Sinatra</span></div>
+        <div class="repertoire-item"><span class="song">My Way</span><span class="artist">Elvis</span></div>
+        <div class="repertoire-item"><span class="song">Moonlight Serenade</span><span class="artist">Standard</span></div>
+        <div class="repertoire-item"><span class="song">Beyond the Sea</span><span class="artist">Bobby Darin</span></div>
+      </div>
+    </div>
+
+    <div class="repertoire-group">
+      <div class="repertoire-heading">Bossa Nova &amp; Light Latin</div>
+      <div class="repertoire-list">
+        <div class="repertoire-item"><span class="song">The Girl from Ipanema</span><span class="artist">Jobim</span></div>
+        <div class="repertoire-item"><span class="song">Bésame Mucho</span><span class="artist">Standard</span></div>
+      </div>
+    </div>
+
+    <div class="repertoire-group">
+      <div class="repertoire-heading">Movie Themes</div>
+      <div class="repertoire-list">
+        <div class="repertoire-item"><span class="song">Theme from Schindler's List</span><span class="artist">John Williams</span></div>
+        <div class="repertoire-item"><span class="song">You've Got a Friend in Me</span><span class="artist">Toy Story</span></div>
+        <div class="repertoire-item"><span class="song">Mia & Sebastian's Theme</span><span class="artist">La La Land</span></div>
+        <div class="repertoire-item"><span class="song">As Time Goes By</span><span class="artist">Casablanca</span></div>
+        <div class="repertoire-item"><span class="song">A Whole New World</span><span class="artist">Aladdin</span></div>
+        <div class="repertoire-item"><span class="song">Rewrite the Stars</span><span class="artist">The Greatest Showman</span></div>
+        <div class="repertoire-item"><span class="song">A Tale as Old as Time</span><span class="artist">Beauty and the Beast</span></div>
+      </div>
+    </div>
+
+    <div class="repertoire-group">
+      <div class="repertoire-heading">Pop Songs</div>
+      <div class="repertoire-list">
+        <div class="repertoire-item"><span class="song">Risk It All</span><span class="artist">Bruno Mars</span></div>
+        <div class="repertoire-item"><span class="song">So Easy</span><span class="artist">Olivia Dean</span></div>
+        <div class="repertoire-item"><span class="song">Goodbye My Love, Goodbye</span><span class="artist">Demis Roussos</span></div>
+        <div class="repertoire-item"><span class="song">Forever and Ever</span><span class="artist">Demis Roussos</span></div>
+      </div>
+    </div>
+
+    <div class="repertoire-group">
+      <div class="repertoire-heading">Classical Piano</div>
+      <div class="repertoire-list">
+        <div class="repertoire-item"><span class="song">Nocturne Op. 9 No. 1</span><span class="artist">Chopin</span></div>
+        <div class="repertoire-item"><span class="song">Nocturne Op. 9 No. 2</span><span class="artist">Chopin</span></div>
+        <div class="repertoire-item"><span class="song">Nocturne Op. 48 No. 2</span><span class="artist">Chopin</span></div>
+        <div class="repertoire-item"><span class="song">Nocturne in C# minor</span><span class="artist">Chopin</span></div>
+        <div class="repertoire-item"><span class="song">Waltz Op. 34 No. 2</span><span class="artist">Chopin</span></div>
+        <div class="repertoire-item"><span class="song">Waltz Op. 70 No. 2 in F minor</span><span class="artist">Chopin</span></div>
+        <div class="repertoire-item"><span class="song">Waltz Op. 69 No. 1 in F minor</span><span class="artist">Chopin</span></div>
+        <div class="repertoire-item"><span class="song">Waltz Op. 69 No. 2 in B minor</span><span class="artist">Chopin</span></div>
+        <div class="repertoire-item"><span class="song">Waltz Op. 64 No. 2 in C# minor</span><span class="artist">Chopin</span></div>
+        <div class="repertoire-item"><span class="song">Clair de Lune</span><span class="artist">Debussy</span></div>
+        <div class="repertoire-item"><span class="song">The Seasons — June</span><span class="artist">Tchaikovsky</span></div>
+        <div class="repertoire-item"><span class="song">Por Una Cabeza</span><span class="artist">Gardel</span></div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="catalog">
-    <div class="label"><span class="opus">Catalog</span> Selected Arrangements</div>
+    <div class="label"><span class="opus">Catalog</span> Custom Arrangements</div>
+    <p class="section-intro">I also write custom piano arrangements and sheet music — for singers, students, or anyone who wants a song written specifically for their voice or skill level. A few examples below.</p>
 
     <div class="catalog-item">
       <div>
         <div class="work-title">From the Start</div>
-        <div class="work-meta"><span>Laufey</span><span>Piano Solo</span><span>Intermediate</span></div>
+        <div class="work-meta"><span>Laufey</span><span>Piano Solo</span><span>Indie / Pop</span></div>
       </div>
       <a href="https://soundcloud.com/ali-mohamed-710311321/from-the-start-solo-piano" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
     </div>
@@ -291,7 +526,7 @@
     <div class="catalog-item">
       <div>
         <div class="work-title">Valentine</div>
-        <div class="work-meta"><span>Laufey</span><span>Piano & Voice</span><span>Intermediate</span></div>
+        <div class="work-meta"><span>Laufey</span><span>Piano & Voice</span><span>Indie / Pop</span></div>
       </div>
       <a href="https://soundcloud.com/ali-mohamed-710311321/valentine-piano-and-voice" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
     </div>
@@ -346,62 +581,17 @@
 
   </section>
 
-  <section class="section" id="about">
-    <div class="label"><span class="opus">Bio</span> The Arranger</div>
-    <div class="about-grid">
-      <div class="about-text">
-        <p><strong>I trained classically on piano</strong>, which means the arrangements you get are built on real harmonic understanding, not guesswork — proper voice leading, idiomatic fingerings, and voicings that actually sit well under the hand.</p>
-        <p>What I do differently: <strong>I transcribe by ear.</strong> Send me a recording with no sheet music available anywhere, and I'll still get you an accurate, playable score. That's rarer than it sounds.</p>
-        <p>I work across <strong>pop, jazz standards, indie, Disney, cinematic, Christmas, and church/worship</strong> repertoire — if you can hum it or send a link, I can probably arrange it.</p>
-      </div>
-      <dl class="fact-list">
-        <dt>Background</dt>
-        <dd>Classically trained pianist, 1st-year university</dd>
-        <dt>Specialty</dt>
-        <dd>Ear transcription, piano/voice & solo piano arranging</dd>
-        <dt>Turnaround</dt>
-        <dd>Typically 2–5 days depending on length</dd>
-        <dt>Formats delivered</dt>
-        <dd>PDF score, MusicXML on request, audio reference render</dd>
-      </dl>
-    </div>
-  </section>
-
-  <section class="section" id="services">
-    <div class="label"><span class="opus">Menu</span> What I Can Arrange</div>
-    <div class="services">
-      <div class="service">
-        <div class="num">01</div>
-        <h3>Solo Piano Arrangement</h3>
-        <p>A full song reimagined for one pianist — for performance, practice, or gifting.</p>
-      </div>
-      <div class="service">
-        <div class="num">02</div>
-        <h3>Piano & Voice / Lead Sheet</h3>
-        <p>Singer-friendly accompaniment with a clear vocal line, transposed to your range.</p>
-      </div>
-      <div class="service">
-        <div class="num">03</div>
-        <h3>Ear Transcription</h3>
-        <p>No sheet music exists for your song? Send the recording — I'll write it from scratch.</p>
-      </div>
-      <div class="service">
-        <div class="num">04</div>
-        <h3>Custom Ensemble Voicing</h3>
-        <p>Re-voiced for your specific singers or small group — built around the players you actually have.</p>
-      </div>
-    </div>
-  </section>
-
   <section class="section" id="contact">
     <div class="contact-box">
-      <h2>Have a song in mind?</h2>
-      <p>Tell me the song, the instrumentation, and your deadline. I'll quote you a price and turnaround within a day.</p>
-      <a href="mailto:notalix4422@yahoo.com" class="btn btn-primary">notalix4422@yahoo.com</a>
+      <h2>Let's talk about your event</h2>
+      <p>Tell me the date, venue, and how many hours you need — I'll send my rate and we can talk repertoire, including any specific songs you'd like custom-arranged at no extra cost.</p>
+      <div class="contact-row">
+        <a href="mailto:notalix4422@yahoo.com" class="btn btn-primary">notalix4422@yahoo.com</a>
+      </div>
     </div>
   </section>
 
-  <footer>Scores delivered as PDF · MusicXML available on request</footer>
+  <footer>Based in Cairo · Available for weddings, hotels, lounges & private events</footer>
 
 </div>
 
