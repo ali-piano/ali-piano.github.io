@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Abdelrazik — Custom Arrangements & Transcription</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;500&display=swap');
+
+  :root {
+    --paper: #F7F3E9;
+    --paper-warm: #F1EADA;
+    --ink: #1C1A17;
+    --ink-soft: #4A453D;
+    --brass: #B8924A;
+    --brass-deep: #8C6B33;
+    --line: rgba(28,26,23,0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 99px, rgba(28,26,23,0.025) 100px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; letter-spacing: -0.01em; }
+
+  .staff { width: 100%; height: 28px; margin: 8px 0; opacity: 0.55; }
+  .staff svg { width: 100%; height: 100%; display: block; }
+  .staff line { stroke: var(--ink-soft); stroke-width: 1; }
+
+  header { padding: 64px 0 40px; border-bottom: 1px solid var(--line); }
+
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before { content: '♪'; font-size: 14px; }
+
+  h1 { font-size: clamp(38px, 6vw, 58px); line-height: 1.05; max-width: 13ch; }
+  h1 em { font-style: italic; color: var(--brass-deep); }
+  .sub { margin-top: 22px; font-size: 18px; color: var(--ink-soft); max-width: 50ch; }
+
+  .cta-row { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14.5px;
+    padding: 13px 26px;
+    border-radius: 3px;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--brass); }
+  .btn-secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--line); }
+
+  .section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  .section:last-of-type { border-bottom: none; }
+
+  .label {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .label .opus { color: var(--brass-deep); }
+  .label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+  .section-intro { color: var(--ink-soft); font-size: 15px; margin-bottom: 28px; max-width: 60ch; }
+
+  /* ---------- SERVICES ---------- */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .service { background: var(--paper); padding: 26px; }
+  .service .num { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--brass-deep); }
+  .service h3 { font-size: 17px; margin-top: 8px; margin-bottom: 8px; }
+  .service p { font-size: 14px; color: var(--ink-soft); }
+
+  /* ---------- FEATURED PROJECT ---------- */
+  .featured-project {
+    background: var(--paper-warm);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+  }
+  .project-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass-deep);
+    margin-bottom: 10px;
+  }
+  .project-title { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600; margin-bottom: 8px; }
+  .project-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .project-meta span:not(:last-child)::after { content: ' · '; color: var(--brass); }
+  .project-desc { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
+  .project-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 10px 18px;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    display: inline-block;
+    margin-top: 4px;
+  }
+  .project-link:hover { background: var(--ink); color: var(--paper); }
+
+  /* ---------- CATALOG ---------- */
+  .catalog-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 16px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .catalog-item:first-child { padding-top: 0; }
+  .catalog-item:last-child { border-bottom: none; }
+
+  .work-title { font-family: 'Fraunces', serif; font-size: 21px; font-weight: 600; }
+  .work-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+  .work-meta span:not(:last-child)::after { content: ' · '; color: var(--brass); }
+
+  .play-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 12.5px;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 9px 16px;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+  .play-link:hover { background: var(--ink); color: var(--paper); }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 40px; align-items: start; }
+  .about-photo img { width: 100%; border-radius: 4px; border: 1px solid var(--line); }
+  .about-text p { margin-bottom: 16px; color: var(--ink-soft); font-size: 16px; }
+  .about-text strong { color: var(--ink); font-weight: 600; }
+
+  .fact-list { font-family: 'Space Mono', monospace; font-size: 13px; margin-top: 24px; }
+  .fact-list dt { color: var(--brass-deep); margin-top: 16px; text-transform: uppercase; letter-spacing: 0.06em; font-size: 11px; }
+  .fact-list dt:first-child { margin-top: 0; }
+  .fact-list dd { color: var(--ink); margin-top: 4px; line-height: 1.5; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px;
+    border-radius: 4px;
+  }
+  .contact-box h2 { color: var(--paper); font-size: 30px; margin-bottom: 14px; }
+  .contact-box p { color: rgba(247,243,233,0.72); max-width: 46ch; margin-bottom: 26px; }
+  .contact-box .btn-primary { background: var(--brass); color: var(--ink); }
+  .contact-box .btn-primary:hover { box-shadow: 0 6px 0 var(--paper); }
+  .contact-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  footer {
+    padding: 36px 0 56px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  footer a { color: var(--brass-deep); text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  @media (max-width: 640px) {
+    .services { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 28px; }
+    .catalog-item { grid-template-columns: 1fr; gap: 12px; }
+    .featured-project { grid-template-columns: 1fr; }
+    .play-link { justify-self: start; }
+    .contact-box { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Custom Arrangements · Transcription · Sheet Music</div>
+    <h1>Your song, written <em>exactly</em> for you.</h1>
+    <p class="sub">I'm Ali — classically trained pianist and arranger from Cairo. I transcribe songs by ear and arrange them for any instrumentation, matched to your voice, skill level, or ensemble.</p>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-primary">Commission an arrangement</a>
+      <a href="#catalog" class="btn btn-secondary">Hear the work</a>
+    </div>
+  </header>
+
+  <div class="staff">
+    <svg viewBox="0 0 880 28" preserveAspectRatio="none">
+      <line x1="0" y1="4" x2="880" y2="4"/>
+      <line x1="0" y1="10" x2="880" y2="10"/>
+      <line x1="0" y1="16" x2="880" y2="16"/>
+      <line x1="0" y1="22" x2="880" y2="22"/>
+    </svg>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="section">
+    <div class="label"><span class="opus">Services</span> What I Offer</div>
+    <div class="services">
+      <div class="service">
+        <div class="num">01</div>
+        <h3>Custom Arrangement</h3>
+        <p>Any song arranged for your specific instrumentation — solo piano, piano & voice, sax & piano, string duo, or small ensemble. Any genre.</p>
+      </div>
+      <div class="service">
+        <div class="num">02</div>
+        <h3>Ear Transcription</h3>
+        <p>No sheet music exists for your song? Send me the recording — I'll write it out from scratch, accurately, with proper harmony and voice leading.</p>
+      </div>
+      <div class="service">
+        <div class="num">03</div>
+        <h3>Batch Projects</h3>
+        <p>Need multiple pieces done? I handle large batches efficiently with consistent quality, fast turnaround, and clear communication throughout.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECT -->
+  <section class="section">
+    <div class="label"><span class="opus">Featured</span> Client Project</div>
+    <div class="featured-project">
+      <div>
+        <div class="project-tag">Ongoing Collaboration</div>
+        <div class="project-title">Saxotools</div>
+        <div class="project-meta"><span>Music Education App</span><span>France</span><span>20-piece batch</span></div>
+        <div class="project-desc">Saxotools is a French music education application teaching saxophone through interactive sheet music. I'm transcribing and arranging a batch of 20 public-domain pieces for piano and Eb saxophone — each adapted to beginner-friendly lengths and notation standards, delivered as MuseScore files and PDFs. A long-term collaboration with plans for medium and hard difficulty variations as the app scales.</div>
+      </div>
+      <a href="https://www.saxotools.com" class="project-link" target="_blank" rel="noopener">Visit Saxotools →</a>
+    </div>
+  </section>
+
+  <!-- CATALOG -->
+  <section class="section" id="catalog">
+    <div class="label"><span class="opus">Catalog</span> Sample Arrangements</div>
+    <p class="section-intro">A selection of recent arrangements across genre and instrumentation. Custom arrangements available for any song — get in touch with what you need.</p>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">Bewitched</div>
+        <div class="work-meta"><span>Laufey</span><span>Piano & Voice</span><span>Indie / Pop</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/laufey-bewitched-piano-voice-1" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">Valentine</div>
+        <div class="work-meta"><span>Laufey</span><span>Piano & Voice</span><span>Indie / Pop</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/valentine-piano-and-voice" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">From the Start</div>
+        <div class="work-meta"><span>Laufey</span><span>Piano & Voice</span><span>Indie / Pop</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/from-the-start-solo-piano" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">Falling Behind</div>
+        <div class="work-meta"><span>Laufey</span><span>Piano & Voice</span><span>Indie / Pop</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/laufey-falling-behind-piano-voice-3" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">Letter to My 13 Year Old Self</div>
+        <div class="work-meta"><span>Laufey</span><span>Piano & Voice</span><span>Indie / Pop</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/laufey-letter-to-my-13-year-old-self-piano-voice-4" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">So Easy</div>
+        <div class="work-meta"><span>Olivia Dean</span><span>Piano & Voice</span><span>Pop</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/so-easy-olivia-dean-piano" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">Man I Need</div>
+        <div class="work-meta"><span>Olivia Dean</span><span>Piano & Voice</span><span>Pop</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/olivia-dean-man-i-need-piano-voice-5" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">Dive</div>
+        <div class="work-meta"><span>Olivia Dean</span><span>Piano & Voice</span><span>Pop</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/olivia-dean-dive-piano-voice-2" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">honeybee</div>
+        <div class="work-meta"><span>Olivia Rodrigo</span><span>Piano & Voice</span><span>Pop</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/honeybee-piano-voice" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">The Way You Look Tonight</div>
+        <div class="work-meta"><span>Sinatra</span><span>Piano & Voice</span><span>Jazz Standard</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/the-way-you-look-tonight" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">Theme from Cinema Paradiso</div>
+        <div class="work-meta"><span>Ennio Morricone</span><span>Piano & Violin</span><span>Cinematic</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/theme-from-cinema-paradiso" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">Risk It All</div>
+        <div class="work-meta"><span>Bruno Mars</span><span>Piano Solo</span><span>Pop</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/bruno-mars-risk-it-all-piano-1" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+    <div class="catalog-item">
+      <div>
+        <div class="work-title">You've Got a Friend in Me</div>
+        <div class="work-meta"><span>Toy Story</span><span>Piano Solo</span><span>Disney / Cinematic</span></div>
+      </div>
+      <a href="https://soundcloud.com/ali-mohamed-710311321/youve-got-a-friend-in-me-piano" class="play-link" target="_blank" rel="noopener">▸ Listen</a>
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="label"><span class="opus">Bio</span> About Me</div>
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="ali-photo.png" alt="Ali Abdelrazik — Arranger & Transcriber">
+      </div>
+      <div>
+        <div class="about-text">
+          <p>I'm a concert pianist at the Cairo Opera House, and transcribing by ear is one of the things I do best. I can write out songs that have no published sheet music anywhere — accurately, with proper harmony and voice leading, not just the melody line.</p>
+          <p>Because I trained classically, the arrangements are built properly: <strong>idiomatic voicings, correct part writing, fingering-friendly notation.</strong> Not just chords under a melody.</p>
+          <p>I work across pop, jazz, indie, Disney, cinematic, Christmas, and church/worship — any genre, any instrumentation, any skill level.</p>
+        </div>
+        <dl class="fact-list">
+          <dt>Based in</dt>
+          <dd>Cairo, Egypt</dd>
+          <dt>Background</dt>
+          <dd>Concert pianist, Cairo Opera House — Chopin Competition winner 2023 & 2025</dd>
+          <dt>Specialties</dt>
+          <dd>Ear transcription, piano & voice arranging, batch projects</dd>
+          <dt>Formats delivered</dt>
+          <dd>PDF score, MusicXML on request, audio reference render</dd>
+          <dt>Turnaround</dt>
+          <dd>Typically 2–5 days depending on length and complexity</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="contact-box">
+      <h2>Have a song in mind?</h2>
+      <p>Tell me the song, instrumentation, and your deadline. I'll quote you a price and turnaround within a day.</p>
+      <div class="contact-row">
+        <a href="mailto:notalix4422@yahoo.com" class="btn btn-primary">notalix4422@yahoo.com</a>
+        <a href="https://www.fiverr.com/ali_abdelrazik" class="btn btn-secondary" target="_blank" rel="noopener">Order on Fiverr</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="index.html">Live Performance →</a>
+    <a href="composing.html">Game & Media Composing →</a>
+  </footer>
+
+</div>
+</body>
+</html>

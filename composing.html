@@ -168,7 +168,39 @@
     color: var(--brass-deep);
   }
 
-  /* ---------- ABOUT ---------- */
+  /* ---------- GAME CREDITS ---------- */
+  .game-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .game-item:first-child { padding-top: 0; }
+  .game-item:last-child { border-bottom: none; }
+  .game-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; }
+  .game-meta { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--ink-soft); margin-top: 5px; }
+  .game-meta span:not(:last-child)::after { content: ' · '; color: var(--brass); }
+  .game-desc { font-size: 14px; color: var(--ink-soft); margin-top: 8px; max-width: 52ch; }
+  .game-role { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--brass-deep); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 10px; }
+  .game-links { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+  .game-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 8px 14px;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    display: block;
+    text-align: center;
+  }
+  .game-link:hover { background: var(--ink); color: var(--paper); }
+  .game-link.soft { border-color: var(--line); color: var(--ink-soft); }
+  .game-link.soft:hover { background: var(--paper); color: var(--ink); }
   .about-grid { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 40px; align-items: start; }
   .about-photo img { width: 100%; border-radius: 4px; border: 1px solid var(--line); }
   .about-text p { margin-bottom: 16px; color: var(--ink-soft); font-size: 16px; }
@@ -222,7 +254,7 @@
     <p class="sub">I'm Ali, a classically trained pianist and composer from Cairo. I write orchestral scores for games — battles, open worlds, quiet story moments, and everything in between.</p>
     <div class="cta-row">
       <a href="#contact" class="btn btn-primary">Start a project</a>
-      <a href="#scores" class="btn btn-secondary">Watch the work</a>
+      <a href="#credits" class="btn btn-secondary">See the work</a>
     </div>
   </header>
 
@@ -285,21 +317,36 @@
       </div>
     </div>
 
-    <!-- Score 4: Coming soon -->
-    <div class="mock-score">
-      <div class="mock-header">
-        <div>
-          <div class="mock-title">Coming Soon</div>
-          <div class="mock-meta"><span>Game Jam Project</span><span>2D Retro Cowboy Shooter</span></div>
-        </div>
-        <div class="mood-tag">Action / Retro</div>
+  </section>
+
+  <!-- GAME CREDITS -->
+  <section class="section" id="credits">
+    <div class="label"><span class="opus">Credits</span> Games I've Scored</div>
+    <p class="section-intro">Real shipped games with original soundtracks — both made during GMTK Game Jam 2026.</p>
+
+    <div class="game-item">
+      <div>
+        <div class="game-title">Howl at the Moon</div>
+        <div class="game-meta"><span>GMTK Game Jam 2026</span><span>Retro Cowboy Shooter</span></div>
+        <div class="game-desc">A countdown-based Western shooter where UFOs are invading your hometown. You've got 60 seconds before the mothership lands. I wrote the full original soundtrack for this one.</div>
+        <div class="game-role">♩ Full Soundtrack — Ali Abdelrazik</div>
       </div>
-      <p class="mock-desc">Currently scoring an original soundtrack for a countdown-themed 2D cowboy shooter game jam — releasing in a few days.</p>
-      <div class="video-frame">
-        <div class="video-placeholder">
-          <span>Game Jam Soundtrack — In Production</span>
-          <span class="soon">Coming very soon</span>
-        </div>
+      <div class="game-links">
+        <a href="https://floodex.itch.io/howl-at-the-moon" class="game-link" target="_blank" rel="noopener">▸ Play Game</a>
+        <a href="https://soundcloud.com/ali-mohamed-710311321/howl-at-the-moon-game" class="game-link soft" target="_blank" rel="noopener">♪ Soundtrack</a>
+      </div>
+    </div>
+
+    <div class="game-item">
+      <div>
+        <div class="game-title">Just In Heist</div>
+        <div class="game-meta"><span>GMTK Game Jam 2026</span><span>Puzzle / Stealth</span></div>
+        <div class="game-desc">A puzzle game where every move is tied to a bomb's countdown. You've stolen money, the bomb's glued to your hands, and you need to arrive at the site right on time without tipping off the cops.</div>
+        <div class="game-role">♩ Full Soundtrack — Ali Abdelrazik</div>
+      </div>
+      <div class="game-links">
+        <a href="https://tsessarsky.itch.io/just-in-heist" class="game-link" target="_blank" rel="noopener">▸ Play Game</a>
+        <a href="https://soundcloud.com/ali-mohamed-710311321/just-in-heist-game-soundtrack" class="game-link soft" target="_blank" rel="noopener">♪ Soundtrack</a>
       </div>
     </div>
 
@@ -323,6 +370,8 @@
           <dd>Cairo, Egypt</dd>
           <dt>Background</dt>
           <dd>Concert pianist, Cairo Opera House — Chopin Competition winner 2023 & 2025</dd>
+          <dt>Game credits</dt>
+          <dd>Howl at the Moon, Just In Heist (GMTK Game Jam 2026)</dd>
           <dt>What I write</dt>
           <dd>Orchestral game scores — battle, exploration, narrative, ambient</dd>
           <dt>Available for</dt>
