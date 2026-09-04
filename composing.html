@@ -147,44 +147,32 @@
     overflow: hidden;
   }
   .video-frame iframe { width: 100%; height: 100%; border: none; display: block; }
-  .video-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: rgba(247,243,233,0.35);
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    text-align: center;
-    padding: 24px;
-    gap: 10px;
-  }
-  .video-placeholder .soon {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--brass-deep);
-  }
 
   /* ---------- GAME CREDITS ---------- */
   .game-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: start;
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     padding: 28px 0;
     border-bottom: 1px solid var(--line);
   }
   .game-item:first-child { padding-top: 0; }
   .game-item:last-child { border-bottom: none; }
+  
+  .game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
   .game-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; }
   .game-meta { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--ink-soft); margin-top: 5px; }
   .game-meta span:not(:last-child)::after { content: ' · '; color: var(--brass); }
-  .game-desc { font-size: 14px; color: var(--ink-soft); margin-top: 8px; max-width: 52ch; }
+  .game-desc { font-size: 14px; color: var(--ink-soft); margin-top: 8px; max-width: 58ch; }
   .game-role { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--brass-deep); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 10px; }
-  .game-links { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+  
   .game-link {
     font-family: 'Space Mono', monospace;
     font-size: 12px;
@@ -195,12 +183,25 @@
     border-radius: 3px;
     white-space: nowrap;
     transition: all 0.15s ease;
-    display: block;
-    text-align: center;
+    display: inline-block;
   }
   .game-link:hover { background: var(--ink); color: var(--paper); }
-  .game-link.soft { border-color: var(--line); color: var(--ink-soft); }
-  .game-link.soft:hover { background: var(--paper); color: var(--ink); }
+
+  .audio-player-container {
+    width: 100%;
+    margin-top: 6px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: #ffffff;
+  }
+  .audio-player-container iframe {
+    display: block;
+    width: 100%;
+    height: 120px;
+    border: none;
+  }
+
   .about-grid { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: 40px; align-items: start; }
   .about-photo img { width: 100%; border-radius: 4px; border: 1px solid var(--line); }
   .about-text p { margin-bottom: 16px; color: var(--ink-soft); font-size: 16px; }
@@ -242,6 +243,7 @@
     .about-grid { grid-template-columns: 1fr; gap: 28px; }
     .mock-header { flex-direction: column; gap: 10px; }
     .contact-box { padding: 32px 24px; }
+    .game-header { flex-direction: column; }
   }
 </style>
 </head>
@@ -322,43 +324,56 @@
   <!-- GAME CREDITS -->
   <section class="section" id="credits">
     <div class="label"><span class="opus">Credits</span> Games & Originals</div>
-    <p class="section-intro">Original music for shipped games and original concepts.</p>
+    <p class="section-intro">Listen to original game soundtracks and concepts directly below:</p>
 
+    <!-- Track 1: Howl at the Moon -->
     <div class="game-item">
-      <div>
-        <div class="game-title">Howl at the Moon</div>
-        <div class="game-meta"><span>GMTK Game Jam 2026</span><span>Retro Cowboy Shooter</span></div>
-        <div class="game-desc">A countdown-based Western shooter where UFOs are invading your hometown. You've got 60 seconds before the mothership lands. I wrote the full original soundtrack for this one.</div>
-        <div class="game-role">♩ Full Soundtrack — Ali Abdelrazik</div>
+      <div class="game-header">
+        <div>
+          <div class="game-title">Howl at the Moon</div>
+          <div class="game-meta"><span>GMTK Game Jam 2026</span><span>Retro Cowboy Shooter</span></div>
+          <div class="game-desc">A countdown-based Western shooter where UFOs are invading your hometown. You've got 60 seconds before the mothership lands. I wrote the full original soundtrack for this one.</div>
+          <div class="game-role">♩ Full Soundtrack — Ali Abdelrazik</div>
+        </div>
+        <div>
+          <a href="https://floodex.itch.io/howl-at-the-moon" class="game-link" target="_blank" rel="noopener">▸ Play Game</a>
+        </div>
       </div>
-      <div class="game-links">
-        <a href="https://floodex.itch.io/howl-at-the-moon" class="game-link" target="_blank" rel="noopener">▸ Play Game</a>
-        <a href="https://soundcloud.com/ali-mohamed-710311321/howl-at-the-moon-game" class="game-link soft" target="_blank" rel="noopener">♪ Soundtrack</a>
+      <div class="audio-player-container">
+        <iframe scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/ali-mohamed-710311321/howl-at-the-moon-game&color=%23b8924a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
       </div>
     </div>
 
+    <!-- Track 2: Just In Heist -->
     <div class="game-item">
-      <div>
-        <div class="game-title">Just In Heist</div>
-        <div class="game-meta"><span>GMTK Game Jam 2026</span><span>Puzzle / Stealth</span></div>
-        <div class="game-desc">A puzzle game where every move is tied to a bomb's countdown. You've stolen money, the bomb's glued to your hands, and you need to arrive at the site right on time without tipping off the cops.</div>
-        <div class="game-role">♩ Full Soundtrack — Ali Abdelrazik</div>
+      <div class="game-header">
+        <div>
+          <div class="game-title">Just In Heist</div>
+          <div class="game-meta"><span>GMTK Game Jam 2026</span><span>Puzzle / Stealth</span></div>
+          <div class="game-desc">A puzzle game where every move is tied to a bomb's countdown. You've stolen money, the bomb's glued to your hands, and you need to arrive at the site right on time without tipping off the cops.</div>
+          <div class="game-role">♩ Full Soundtrack — Ali Abdelrazik</div>
+        </div>
+        <div>
+          <a href="https://tsessarsky.itch.io/just-in-heist" class="game-link" target="_blank" rel="noopener">▸ Play Game</a>
+        </div>
       </div>
-      <div class="game-links">
-        <a href="https://tsessarsky.itch.io/just-in-heist" class="game-link" target="_blank" rel="noopener">▸ Play Game</a>
-        <a href="https://soundcloud.com/ali-mohamed-710311321/just-in-heist-game-soundtrack" class="game-link soft" target="_blank" rel="noopener">♪ Soundtrack</a>
+      <div class="audio-player-container">
+        <iframe scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/ali-mohamed-710311321/just-in-heist-game-soundtrack&color=%23b8924a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
       </div>
     </div>
 
+    <!-- Track 3: Main Menu Theme (Light Horror) -->
     <div class="game-item">
-      <div>
-        <div class="game-title">Main Menu Theme (Light Horror)</div>
-        <div class="game-meta"><span>Standalone Track</span><span>Light Horror / Creepy Game</span></div>
-        <div class="game-desc">A main menu theme loop composed for a lighthearted horror game concept. Combines eerie, uncanny melodies with subtle quirky energy to set a tense yet engaging atmosphere.</div>
-        <div class="game-role">♩ Music Composition — Ali Abdelrazik</div>
+      <div class="game-header">
+        <div>
+          <div class="game-title">Main Menu Theme (Light Horror)</div>
+          <div class="game-meta"><span>Standalone Track</span><span>Light Horror / Creepy Game</span></div>
+          <div class="game-desc">A main menu theme loop composed for a lighthearted horror game concept. Combines eerie, uncanny melodies with subtle quirky energy to set a tense yet engaging atmosphere.</div>
+          <div class="game-role">♩ Music Composition — Ali Abdelrazik</div>
+        </div>
       </div>
-      <div class="game-links">
-        <a href="https://soundcloud.com/ali-mohamed-710311321/horror-main-menu-music-we-need?si=5b4b189f094d4962b0c829b67c591b02&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" class="game-link soft" target="_blank" rel="noopener">♪ Soundtrack</a>
+      <div class="audio-player-container">
+        <iframe scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/ali-mohamed-710311321/horror-main-menu-music-we-need&color=%23b8924a&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
       </div>
     </div>
 
